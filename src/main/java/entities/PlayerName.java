@@ -6,6 +6,7 @@ public class PlayerName {
     public PlayerName(String name) {
         this.name = name;
         validateNameLength();
+        validateBlank();
     }
 
     private void validateNameLength() {
@@ -15,4 +16,14 @@ public class PlayerName {
         }
     }
 
+    private void validateBlank() {
+        boolean isBlank = this.name.strip().contains(" ") || this.name.isBlank();
+        if (isBlank) {
+            throw new IllegalArgumentException("[ERROR] 플레이어 이름은 공백을 허용하지 않습니다.");
+        }
+    }
+
+    public String get() {
+        return this.name;
+    }
 }
